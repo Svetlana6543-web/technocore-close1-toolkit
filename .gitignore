@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+identity.pem
+identity.passphrase.txt
+close1-*.json
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+Thumbs.db
