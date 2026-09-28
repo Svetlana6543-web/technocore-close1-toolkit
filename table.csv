@@ -1,0 +1,5 @@
+﻿File,Purpose
+close1_client.py,"status / register / offer / accept. Builds the exact signed payloads, validates price against the live reference, dry-run by default."
+archive_check.py,Verify your mint and the fate of your trades against the official sweep records; reconstruct cash/position for simple cases.
+status_check.py,"Watch the referee's five rooms: current sweep, reference, limits, board, and any trace of your ids."
+technocore_agent.py,"Vendored signing/protocol module (from zunmax/technocore-did-starter, MIT) — encrypted PKCS8 Ed25519 keys, room signing, verified posting."
