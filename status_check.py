@@ -19,11 +19,15 @@ def main() -> int:
 
     for room, limit in (("d-close1-price", 1), ("d-close1-state", 1), ("d-close1-pnl", 1)):
         r = tca.read_room(room, limit=limit, base_url=args.base_url)
-        data = json.loads(r["messages"][-1]["text"])
+        messages = r.get("messages") or []
+        if not messages:
+            print(f"NOTE  {room}: empty window (season over or history rotated)")
+            continue
+        data = json.loads(messages[-1]["text"])
         if room == "d-close1-price":
             print("PRICE", "sweep", data["n"], "| ref", data["ref"]["px"],
                   "| limits", data["limits"], "| global", data.get("global"),
-                  "| posted", r["messages"][-1]["ts"])
+                  "| posted", messages[-1]["ts"])
         elif room == "d-close1-state":
             print("STATE", "owners", data["owners"], "| rooms", data["rooms"], "| n", data["n"])
         else:
