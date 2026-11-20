@@ -60,7 +60,13 @@ def canonical_terms(terms: dict) -> str:
 
 def latest_reference(args: argparse.Namespace) -> dict:
     response = tca.read_room(PRICE_ROOM, limit=1, base_url=args.base_url)
-    message = response["messages"][-1]
+    messages = response.get("messages") or []
+    if not messages:
+        raise tca.NetworkError(
+            "price room d-close1-price is empty (season over or ring history rotated); "
+            "cannot determine the current reference"
+        )
+    message = messages[-1]
     data = json.loads(message["text"])
     return {
         "sweep": data["n"],
