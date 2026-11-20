@@ -3,6 +3,7 @@ __pycache__/
 identity.pem
 identity.passphrase.txt
 close1-*.json
+!examples/close1-offer-example.json
 .pytest_cache/
 .ruff_cache/
 .DS_Store
